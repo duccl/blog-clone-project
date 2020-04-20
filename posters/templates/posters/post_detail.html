@@ -1,0 +1,7 @@
+{%extends './base.html'%}
+
+{%block body_block%}
+{%for comment in post.comment.all%}
+<p>{{comment.body_text}}</p>
+{%endfor%}
+{%endblock%}
