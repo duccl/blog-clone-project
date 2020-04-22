@@ -13,7 +13,15 @@ class HomePageView(TemplateView):
 
 class PostCreateView(CreateView):
     model = models.Post
-    template_name = "posters/new_post.html"
+    template_name = "posters/post_create.html"
+    fields = ('title','author','body')
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["actual_page"] = "New Post"
+        return context
+    
 
 
 class PostDetailView(DetailView):
@@ -34,4 +42,3 @@ class PostListView(ListView):
     slug_url_kwarg = 'id'
     model = models.Post
     context_object_name = 'posts'
-    #template_name = "posters/list"
