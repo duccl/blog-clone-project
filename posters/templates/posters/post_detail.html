@@ -1,10 +1,18 @@
 {%extends './base.html'%}
-
 {%block body_block%}
-<h1>{{post.title}}</h1>
-<div class="badge badge-primary text-wrap">Author: {{post.author}}</div>
-<div class="text-nowrap text-break" id="content">{{post.body}}</div>
-{%for comment in post.comment.all%}
+<div class="jumbotron">
+    <h1>{{post.title}}</h1>
+    <div class="badge badge-primary text-wrap">Author: {{post.author}}</div>
+    <div class="text-nowrap text-break" id="content">{{post.body}}</div>
+</div>
+{%if not user.is_authenticated%}
+<div class="flex-row-reverse">
+    <div>
+        <a class='btn btn-primary' href="{%url 'posters:new_comment' id=post.id%}">Comment</a>
+    </div>
+</div>
+{%endif%}
+{%for comment in post.comments.all%}
 <p>{{comment.body_text}}</p>
 {%endfor%}
 {%endblock%}

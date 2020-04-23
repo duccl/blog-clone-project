@@ -1,0 +1,9 @@
+.flex-row-reverse{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+
+.margin-top{
+    margin-top: 5px;
+}

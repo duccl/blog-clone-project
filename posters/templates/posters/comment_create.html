@@ -1,0 +1,13 @@
+{%extends './base.html'%}
+{%load crispy_forms_tags%}
+
+{%block body_block%}
+<div class="container">
+    <h2>Leave your comment below!</h2>
+    <form method="post">
+        {%csrf_token%}
+        {{form | crispy}}
+        <input type="submit" style="margin-top: 6px;"class = "btn btn-primary" value="Comment">
+    </form>
+</div>
+{%endblock%}
