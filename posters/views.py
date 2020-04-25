@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView,CreateView,DetailView,ListView,DeleteView
 from django.http import HttpResponseRedirect
 from django.urls import reverse,reverse_lazy
+from django.contrib.auth.models import User
 from . import models
 # Create your views here.
 class HomePageView(TemplateView):
@@ -27,7 +28,24 @@ class PostDeleteView(DeleteView):
 class PostCreateView(CreateView):
     model = models.Post
     template_name = "posters/post_create.html"
-    fields = ('title','author','body')
+    fields = ('title','body')
+    
+    def form_valid(self,form):
+        user_author = User.objects.get(pk=self.user_creating_post_id)
+        new_post = form.save(commit=False)
+        new_post.author = user_author
+        new_post.save()
+        return HttpResponseRedirect(reverse('posters:detail',kwargs={'id':new_post.id}))
+
+
+    def post(self,request,*args, **kwargs):
+        self.user_creating_post_id = request.user.id
+        form = self.get_form()
+
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
