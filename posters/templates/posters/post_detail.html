@@ -1,18 +1,32 @@
 {%extends './base.html'%}
 {%block body_block%}
 <div class="jumbotron">
+    <div class="badge badge-primary text-wrap large-font">Author: {{post.author}}</div>
     <h1>{{post.title}}</h1>
-    <div class="badge badge-primary text-wrap">Author: {{post.author}}</div>
     <div class="text-nowrap text-break" id="content">{{post.body}}</div>
 </div>
-{%if not user.is_authenticated%}
 <div class="flex-row-reverse">
-    <div>
-        <a class='btn btn-primary' href="{%url 'posters:new_comment' id=post.id%}">Comment</a>
-    </div>
+    {%if not user.is_authenticated%}
+    <a class='btn btn-primary' href="{%url 'posters:new_comment' id=post.id%}">Comment</a>
+    {%else%}
+    <a href="{%url 'posters:delete' id=post.id%}" class="btn btn-danger">Delete Post</a>
+    {%endif%}
 </div>
-{%endif%}
-{%for comment in post.comments.all%}
-<p>{{comment.body_text}}</p>
-{%endfor%}
+<ul class="list-group">
+    {%for comment in post.comments.all%}
+    <li class="list-group-item">
+        {%if user.is_authenticated%}
+        <a href="" class="float-right btn btn-danger"><i class="fas fa-times-circle"></i></a>
+        {%endif%}
+        <div class="text-break">
+            {{comment.body_text}}
+        </div>
+        <div>
+            <div class="badge badge-danger text-wrap">{{comment.author}}</div>
+            <div class="badge badge-primary text-wrap">{{comment.published_date}}</div>
+        </div>
+
+    </li>
+    {%endfor%}
+</ul>
 {%endblock%}

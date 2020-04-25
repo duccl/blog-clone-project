@@ -2,6 +2,12 @@
     display: flex;
     flex-direction: row-reverse;
     width: 100%;
+    margin: 7.5px;
+    overflow: hidden;
+}
+
+.large-font{
+    font-size: medium;
 }
 
 .margin-top{

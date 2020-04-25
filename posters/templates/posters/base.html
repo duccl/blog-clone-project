@@ -53,7 +53,8 @@
                 {%if user.is_authenticated%}
                 <li class="nav-item"><a href="{%url 'posters:new_post'%}" class="nav-link">New Post</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Drafts</a></li>
-                <li class="nav-item"><a href="{%url 'userLogin:logout'%}" class="nav-link"><i class="far fa-arrow-alt-circle-right"></i>Logout</a></li>
+                <li class="nav-item"><a href="{%url 'userLogin:logout'%}" class="nav-link"><i class="far fa-arrow-alt-circle-right"></i> Logout</a></li>
+                <li class="nav-item nav-link"><i class="far fa-user"></i> {{user.username}}</li>
                 {%else%}
                 <li class="nav-item"><a href="{%url 'userLogin:login'%}" class="nav-link"><i class="fas fa-arrow-circle-up"></i> Login</a></li>
                 {%endif%}
