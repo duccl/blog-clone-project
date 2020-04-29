@@ -79,8 +79,6 @@ class CommentCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context["actual_page"] = "Comment"
         return context
-    
-
 
 class PostDetailView(DetailView):
     slug_field = 'id'
@@ -89,7 +87,9 @@ class PostDetailView(DetailView):
     model = models.Post
 
     def post(self,request,*args, **kwargs):
-        print(request)
+        comment_to_delete = models.Comment.objects.filter(pk=request.POST.get("comment_id"))
+        comment_to_delete.delete()
+        return HttpResponseRedirect(reverse('posters:detail',kwargs=kwargs))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
