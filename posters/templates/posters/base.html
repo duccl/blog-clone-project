@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {%load static%}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,8 +23,10 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/155bfdb581.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{%static 'posters/my_style.css'%}">
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{%static 'posters/style/my_style.css'%}">
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
 </head>
 
 <body>
@@ -53,10 +56,12 @@
                 {%if user.is_authenticated%}
                 <li class="nav-item"><a href="{%url 'posters:new_post'%}" class="nav-link">New Post</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Drafts</a></li>
-                <li class="nav-item"><a href="{%url 'userLogin:logout'%}" class="nav-link"><i class="far fa-arrow-alt-circle-right"></i> Logout</a></li>
+                <li class="nav-item"><a href="{%url 'userLogin:logout'%}" class="nav-link"><i
+                            class="far fa-arrow-alt-circle-right"></i> Logout</a></li>
                 <li class="nav-item nav-link"><i class="far fa-user"></i> {{user.username}}</li>
                 {%else%}
-                <li class="nav-item"><a href="{%url 'userLogin:login'%}" class="nav-link"><i class="fas fa-arrow-circle-up"></i> Login</a></li>
+                <li class="nav-item"><a href="{%url 'userLogin:login'%}" class="nav-link"><i
+                            class="fas fa-arrow-circle-up"></i> Login</a></li>
                 {%endif%}
             </ul>
         </div>
@@ -65,7 +70,7 @@
         {%block body_block%}
         {%endblock%}
     </div>
-    <script src="{%static 'posters/index.js'%}"></script>
+    <script src="{%static 'posters/src/index.js'%}"></script>
 </body>
 
 </html>
