@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-# Create your models here.
 
 class Post(models.Model):
     title = models.CharField(max_length=60,unique=True)
@@ -10,6 +9,7 @@ class Post(models.Model):
     created_date = models.DateTimeField(auto_now=True)
     body = models.TextField(max_length=3000)
     is_publicated = models.BooleanField(default=False)
+    is_draft = models.BooleanField(default=True)
 
     def get_absolute_url(self):
         return reverse("posters:detail", kwargs={"id": self.pk})
