@@ -6,6 +6,18 @@
     overflow: hidden;
 }
 
+.btn-margin{
+    margin-left: 5px;
+}
+
+.btn{
+    margin-top: 6px;
+}
+
+.card{
+    margin: 10px;
+}
+
 .large-font{
     font-size: medium;
 }

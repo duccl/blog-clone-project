@@ -8,4 +8,5 @@ urlpatterns = [
     path("detail/<int:id>", views.PostDetailView.as_view(), name="detail"),
     path("delete/<int:id>", views.PostDeleteView.as_view(), name="delete"),
     path("detail/<int:id>/new_comment", views.CommentCreateView.as_view(), name="new_comment"),
+    path("edit/<int:id>/", views.PostUpdateView.as_view(), name="edit")
 ]

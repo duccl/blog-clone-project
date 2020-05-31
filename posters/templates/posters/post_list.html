@@ -7,16 +7,28 @@
 <div class="container">
     <div class="row">
         {%for post in posts%}
-            {%if post.is_publicated and not post.is_draft%}
-                <div class="card col-4" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{post.title}}</h5>
-                        <p class="card-text">This post was made by {{post.author}} and posted in {{post.published_date}}</p>
-                        <div class="text-muted">Comments: {{post.comments.all.count}}</div>
-                        <a href="{%url 'posters:detail' id=post.id%}" class="btn btn-primary">Read</a>
-                    </div>
-                </div>
-            {%endif%}
+        {%if not user.is_authenticated and post.is_publicated and not post.is_draft%}
+        <div class="card col-4" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text">This post was made by {{post.author}} and posted in {{post.published_date}}</p>
+                <div class="text-muted">Comments: {{post.comments.all.count}}</div>
+                <a href="{%url 'posters:detail' id=post.id%}" class="btn btn-primary">Read</a>
+            </div>
+        </div>
+        {%elif user == post.author%}
+        <div class="card col-4" style="width: 18rem;">
+            <div class="card-body">
+                {%if post.is_publicated%}
+                    <h5 class="card-title">{{post.title}} <i class="fas fa-check"></i></h5>
+                {%else%}
+                    <h5 class="card-title">{{post.title}}</h5>
+                {%endif%}
+                <div class="text-muted">Comments: {{post.comments.all.count}}</div>    
+                <a href="{%url 'posters:detail' id=post.id%}" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+        {%endif%}
         {%endfor%}
     </div>
 </div>

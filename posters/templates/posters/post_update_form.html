@@ -1,0 +1,13 @@
+{%extends './base.html'%}
+{%load crispy_forms_tags%}
+
+{%block body_block%}
+<form method="post">
+    {%csrf_token%}
+    {{form | crispy}}
+    {%if not post.is_publicated%}
+        <input style="margin-top: 10px;" type="submit" class="btn btn-primary" name="Publishing" value="Publish">
+    {%endif%}
+    <input style="margin-top: 10px;" type="submit" class="btn btn-primary" name="Saving" value="Save">
+</form>
+{%endblock%}

@@ -5,6 +5,7 @@
 <form method="post">
     {%csrf_token%}
     {{form | crispy}}
-    <input style="margin-top: 10px;"type="submit" class = "btn btn-primary" value="Publish">
+    <input style="margin-top: 10px;"type="submit" class = "btn btn-primary" name="Publishing" value="Publish">
+    <input style="margin-top: 10px;"type="submit" class = "btn btn-primary" name="Saving" value="Save">
 </form>
 {%endblock%}
