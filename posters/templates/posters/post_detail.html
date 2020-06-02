@@ -7,7 +7,7 @@
 </div>
 <div class="flex-row-reverse">
     {%if user.is_authenticated and user == post.author%}
-    <a href="{%url 'posters:delete' id=post.id%}" class="btn btn-danger btn-margin">Delete Post</a>
+    <a href="{%url 'posters:delete_post' id=post.id%}" class="btn btn-danger btn-margin">Delete Post</a>
     <a href="{%url 'posters:edit' id=post.id%}" class="btn btn-success btn-margin">Edit Post</a>
     {%else%}
     <a class='btn btn-primary' href="{%url 'posters:new_comment' id=post.id%}">Comment</a>
@@ -17,13 +17,9 @@
     {%for comment in post.comments.all%}
     <li class="list-group-item">
         {%if user.is_authenticated and user == post.author%}
-        <form class="float-right" method="post">
-            {% csrf_token %}
-            <input name="comment_id" value="{{comment.id}}" hidden="true">
-            <button class="btn btn-danger" type="submit">
-                <i class="float fas fa-times-circle"></i>
-            </button>
-        </form>
+        <a href="{%url 'posters:delete_comment' comment_id=comment.id%}" class="btn btn-danger btn-margin float-right">
+            <i class="float fas fa-times-circle"></i>
+        </a>
         {%endif%}
         <div class="text-break">
             {{comment.body_text}}

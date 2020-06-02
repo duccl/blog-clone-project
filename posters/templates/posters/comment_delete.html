@@ -1,0 +1,13 @@
+{%extends './base.html'%}
+{%load crispy_forms_tags%}
+
+{%block body_block%}
+<h1>Do you really want to delete this comment?</h1>
+<form method="post">
+    {%csrf_token%}
+    {{form | crispy}}
+    <input type="submit"class="btn btn-danger" value="Delete"> 
+    <a href="{%url 'posters:detail' id=comment.post.id%}" class="btn btn-primary">Cancel</a>
+</form>
+
+{%endblock%}
