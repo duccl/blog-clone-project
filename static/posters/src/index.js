@@ -1,5 +1,7 @@
 const get_content = () => {
-    $("#content").html($("#content").text())
+    $(".text-break").each(function(){
+        $(this).html($(this).text())
+    }) 
 }
 
 const textareaPresent = () =>{
