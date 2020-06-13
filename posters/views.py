@@ -1,12 +1,11 @@
 from datetime import timezone
-
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (
     CreateView, DeleteView, DetailView, ListView, TemplateView, UpdateView)
-
 from . import models
 
 # Create your views here.
@@ -34,11 +33,12 @@ class PostDeleteView(DeleteView):
         return context
 
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin,CreateView):
     model = models.Post
     template_name = "posters/post_create.html"
     fields = ('title', 'body')
-
+    login_url = '/userLogin/login/'
+    redirect_field_name = 'posters/post_detail.html'
     def is_publishing(self):
         return 'Publishing' in self.request.POST
 
