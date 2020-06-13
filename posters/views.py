@@ -1,9 +1,14 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, DetailView, ListView, DeleteView, UpdateView
-from django.http import HttpResponseRedirect
-from django.urls import reverse, reverse_lazy
+from datetime import timezone
+
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (
+    CreateView, DeleteView, DetailView, ListView, TemplateView, UpdateView)
+
 from . import models
+
 # Create your views here.
 
 
@@ -108,6 +113,10 @@ class PostListView(ListView):
     slug_url_kwarg = 'id'
     model = models.Post
     context_object_name = 'posts'
+
+    def get_queryset(self):
+        return models.Post.objects.order_by('-published_date')
+    
 
 class CommentDeleteView(DeleteView):
     model = models.Comment
