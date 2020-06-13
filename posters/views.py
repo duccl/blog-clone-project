@@ -115,7 +115,18 @@ class PostListView(ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        return models.Post.objects.order_by('-published_date')
+        return models.Post.objects.filter(is_publicated=True).order_by('-published_date')
+
+class DraftPostListView(LoginRequiredMixin,ListView):
+    slug_field = 'id'
+    slug_url_kwarg = 'id'
+    model = models.Post
+    template_name = 'posters/draft_list.html'
+    context_object_name = 'posts'
+    login_url = '/userLogin/login'
+    redirect_field_name = ''
+    def get_queryset(self):
+        return models.Post.objects.filter(is_draft = True,author = self.request.user.id)
     
 
 class CommentDeleteView(DeleteView):
