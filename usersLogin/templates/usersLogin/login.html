@@ -2,9 +2,13 @@
 {%load crispy_forms_tags%}
 
 {%block body_block%}
-<form method="post">
-    {%csrf_token%}
-    {{form | crispy}}
-    <input type="submit" class = "btn btn-primary" value="Login">
-</form>
+<div class="center">
+    <form method="post">
+        {%csrf_token%}
+        {{form | crispy}}
+        <div class="margin-top">
+            <input type="submit" class="btn btn-primary half-size" value="Login">
+        </div>
+    </form>
+</div>
 {%endblock%}

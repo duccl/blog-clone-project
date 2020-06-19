@@ -1,0 +1,54 @@
+.flex-row-reverse{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    margin: 7.5px;
+    overflow: hidden;
+}
+
+body{
+    background-color: #E5E5E5;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.half-size{
+    width: 20%;
+}
+
+.row-container{
+    justify-content: center;
+}
+
+nav#top-nav{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.egg-shell{
+    background-color: #F8F4E3;
+}
+
+.center{
+    text-align: center;
+}
+
+.btn-margin{
+    margin-left: 5px;
+}
+
+.btn{
+    margin-top: 6px;
+}
+
+.card{
+    margin: 10px;
+}
+
+.large-font{
+    font-size: medium;
+}
+
+.margin-top{
+    margin-top: 5px;
+}

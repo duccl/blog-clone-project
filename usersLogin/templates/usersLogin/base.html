@@ -1,7 +1,11 @@
 <!DOCTYPE html>
+{%load static%}
 <html lang="en">
 
 <head>
+    <!-- Thanks To https://fontawesome.com/icons/bolt?style=solid -->
+    <link rel="icon" href="{%static 'posters/images/bolt-solid.svg'%}">
+    <!--  -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {%if actual_page%}
@@ -9,7 +13,12 @@
     {%else%}
     <title>Blog</title>
     {%endif%}
-    <!-- Latest compiled and minified CSS -->
+
+    <!-- Thanks to https://ckeditor.com/ckeditor-4/ -->
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <!--  -->
+
+    <!-- Thanks to https://getbootstrap.com/ -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -21,11 +30,26 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <!--  -->
+
+    <!-- Thanks to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <!--  -->
+
+    <!-- Thanks to https://fontawesome.com/ -->
     <script src="https://kit.fontawesome.com/155bfdb581.js" crossorigin="anonymous"></script>
+    <!--  -->
+
+    <!-- Thanks to https://jquery.com/ -->
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <!--  -->
+    
+    <link rel="stylesheet" href="{%static 'usersLogin/style/style.css'%}">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav id='top-nav' class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="{%url 'posters:home'%}">My tech Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,22 +65,27 @@
                     <a class="nav-link" href="#">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">GitHub</a>
+                    <a class="nav-link" target ="_blank" href="https://github.com/duccl">GitHub</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">LinkedIn</a>
+                    <a class="nav-link" target ="_blank" href="https://www.linkedin.com/in/eduardo-coltri-180763186/">LinkedIn</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item"><a href="{%url 'posters:new_post'%}" class="nav-link">New Post</a></li>
                 {%if user.is_authenticated%}
-                <li class="nav-item"><a href="{%url 'usersLogin:login'%}" class="nav-link"><i class="far fa-arrow-alt-circle-right"></i>Logout</a></li>
+                <li class="nav-item"><a href="{%url 'posters:drafts'%}" class="nav-link">Drafts</a></li>
+                <li class="nav-item"><a href="{%url 'userLogin:logout'%}" class="nav-link"><i
+                            class="far fa-arrow-alt-circle-right"></i> Logout</a></li>
+                <li class="nav-item nav-link"><i class="far fa-user"></i> {{user.username}}</li>
                 {%else%}
-                <li class="nav-item"><a href="{%url 'usersLogin:login'%}" class="nav-link"><i class="fas fa-arrow-circle-up"></i> Login</a></li>
+                <li class="nav-item"><a href="{%url 'userLogin:login'%}" class="nav-link"><i
+                            class="fas fa-arrow-circle-up"></i> Login</a></li>
                 {%endif%}
             </ul>
         </div>
     </nav>
-    <div class="jumbotron">
+    <div class="container">
         {%block body_block%}
         {%endblock%}
     </div>
