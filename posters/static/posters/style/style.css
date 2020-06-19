@@ -6,6 +6,29 @@
     overflow: hidden;
 }
 
+body{
+    background-color: #E5E5E5;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.row-container{
+    justify-content: center;
+}
+
+nav#top-nav{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.egg-shell{
+    background-color: #F8F4E3;
+}
+
+.center{
+    text-align: center;
+}
+
 .btn-margin{
     margin-left: 5px;
 }

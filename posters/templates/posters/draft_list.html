@@ -1,22 +1,18 @@
 {%extends './base.html'%}
 
 {%block body_block%}
-<h1>Drafts</h1>
+<h1 class="center">Drafts</h1>
 
 {%if posts%}
-<div class="container">
-    <div class="row">
-        {%for post in posts%}
-        <div class="card col-4" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">{{post.title}}</h5>
-                <p class="card-text">This post was made by {{post.author}} and posted in {{post.published_date}}</p>
-                <div class="text-muted">Comments: {{post.comments.all.count}}</div>
-                <a href="{%url 'posters:detail' id=post.id%}" class="btn btn-primary">Read</a>
-            </div>
+<div class="row row-container">
+    {%for post in posts%}
+    <div class="card col-6 egg-shell">
+        <div class="card-body egg-shell">
+            <h5 class="card-title">{{post.title}}</h5>
+            <a href="{%url 'posters:detail' id=post.id%}" class="btn btn-primary">Edit</a>
         </div>
-        {%endfor%}
     </div>
+    {%endfor%}
 </div>
 {%else%}
 <h2>You do not have drafts already!</h2>
